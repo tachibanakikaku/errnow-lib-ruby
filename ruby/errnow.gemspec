@@ -7,11 +7,11 @@ Gem::Specification.new do |spec|
   spec.name          = "errnow"
   spec.version       = Errnow::VERSION
   spec.authors       = ["mryoshio"]
-  spec.email         = ["yoshiokaas@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.email         = ["yoshiokaas@tachibanakikaku.com"]
+  spec.summary       = %q{ErrNow gem.}
+  spec.description   = %q{Gem for ErrNow.}
   spec.homepage      = ""
-  spec.license       = "MIT"
+  spec.license       = "GPLv3"
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
