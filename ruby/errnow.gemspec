@@ -1,10 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'errnow/version'
 
 Gem::Specification.new do |s|
   s.name          = 'errnow'
-  s.version       = '0.0.1'
+  s.version       = Errnow::VERSION
   s.authors       = ['mryoshio']
   s.email         = ['yoshiokaas@tachibanakikaku.com']
   s.summary       = %q{ErrNow gem.}

@@ -1,5 +1,6 @@
 require_relative 'errnow/connector'
 require_relative 'errnow/instance_methods'
+require_relative 'errnow/version'
 
 module Errnow
   include Errnow::InstanceMethods
