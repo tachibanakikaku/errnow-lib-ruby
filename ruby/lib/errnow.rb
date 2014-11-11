@@ -1,13 +1,10 @@
-require "errnow/version"
+require_relative 'errnow/connector'
+require_relative 'errnow/instance_methods'
 
 module Errnow
-  def self.included(klass)
-    klass.send(:after_action, :render_in_err)
-  end
+  include Errnow::InstanceMethods
 
-  def render_in_err
-    return unless status.is_a?(Fixnum)
-    # TODO: connect server and get html
-    response.body = File.open("#{Rails.root}/public/err.html", 'rb')
+  def self.included(base)
+    base.send(:after_action, :render_in_err)
   end
 end
