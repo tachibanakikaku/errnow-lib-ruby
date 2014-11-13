@@ -18,9 +18,7 @@ $ bundle
 
 ## Usage
 
-#####
-
-Write in your controllers. application_controller is the easiest way.
+##### Change your application_controller.
 
 ```ruby
 class ApplicationController < ActionController::Base
@@ -30,6 +28,37 @@ class ApplicationController < ActionController::Base
   include Errnow # add this line
 end
 ```
+
+##### Create controller for test.
+
+```ruby
+class StatusesController < ApplicationController
+  def success
+  end
+
+  def not_found
+    render status: :not_found
+  end
+
+  def forbidden
+    render status: :forbidden
+  end
+
+  def internal_server_error
+    render status: :internal_server_error
+  end
+end
+```
+
+##### Request
+
+- http://localhost:3000/statuses/success
+
+- http://localhost:3000/statuses/not_found
+
+- http://localhost:3000/statuses/forbidden
+
+- http://localhost:3000/statuses/internal_server_error
 
 ## Contributing
 
