@@ -1,26 +1,35 @@
 # Errnow
 
-TODO: Write a gem description
+Errnow client library for Ruby.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'errnow'
+gem 'errnow', git: 'https://github.com/tachibanakikaku/errnow-lib-ruby.git'
 ```
 
 And then execute:
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install errnow
+```bash
+$ bundle
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+#####
+
+Write in your controllers. application_controller is the easiest way.
+
+```ruby
+class ApplicationController < ActionController::Base
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
+  include Errnow # add this line
+end
+```
 
 ## Contributing
 
