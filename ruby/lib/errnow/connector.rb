@@ -1,4 +1,5 @@
 require 'net/http'
+require_relative 'encrypter'
 
 module Errnow
   class Connector
@@ -15,12 +16,13 @@ module Errnow
       params = { app_id: app_id, status: status }
       uri = URI(@url)
       uri.query = URI.encode_www_form(params)
+
       Net::HTTP.start(
         uri.host,
         uri.port,
         use_ssl: uri.scheme == 'https') do |http|
         req = Net::HTTP::Get.new(uri)
-        # req['Custom Header'] = 'foo'
+        req['Authorization'] = Errnow::Encrypter.new.authorization_signature(req.method, uri)
         res = http.request(req)
       end
     end
