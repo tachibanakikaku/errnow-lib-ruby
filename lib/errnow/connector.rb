@@ -4,7 +4,7 @@ require_relative 'encrypter'
 module Errnow
   class Connector
     def initialize
-      @url = 'https://github.com/'
+      @url = nil
     end
 
     # Get target endpoint.
@@ -26,5 +26,7 @@ module Errnow
         res = http.request(req)
       end
     end
+
+    attr_reader :url
   end
 end
