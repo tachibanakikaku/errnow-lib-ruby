@@ -1,20 +1,27 @@
 require 'net/http'
-require_relative 'encrypter'
 
 module Errnow
   class Connector
     def initialize
-      @url = nil
+      Tencryptor.configure do |config|
+        config.algorithm         = Errnow.config.algorithm
+        config.service           = Errnow.config.service
+        config.headers           = Errnow.config.headers
+        config.region            = Errnow.config.region
+        config.access_key        = Errnow.config.access_key
+        config.secret_access_key = Errnow.config.secret_access_key
+      end
+
+      @enc = Tencryptor::Encrypter.new
     end
 
     # Get target endpoint.
     #
-    # @param app_id [String] application id of yours
     # @param status [Fixnum] status for the page
     # @return res [Net::HTTPResponse]
-    def get(app_id = nil, status = nil)
-      params = { app_id: app_id, status: status }
-      uri = URI(@url)
+    def get(status = nil)
+      params = { app_id: Errnow.config.app_id, status: status }
+      uri = URI(Errnow.url)
       uri.query = URI.encode_www_form(params)
 
       Net::HTTP.start(
@@ -22,11 +29,10 @@ module Errnow
         uri.port,
         use_ssl: uri.scheme == 'https') do |http|
         req = Net::HTTP::Get.new(uri)
-        req['Authorization'] = Errnow::Encrypter.new.authorization_signature(req.method, uri)
+        req['Authorization'] =
+          "#{Errnow.access_key}::#{@enc.signature(uri, req.method)}"
         res = http.request(req)
       end
     end
-
-    attr_reader :url
   end
 end

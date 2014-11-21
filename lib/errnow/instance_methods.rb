@@ -7,15 +7,9 @@ module Errnow
     def render_in_err
       return if status == 200
       connector = Errnow::Connector.new
-      if connector.url.nil?
-        dummy_response
-        return
-      end
-      r = connector.get('xxx', status) # sample
+      r = connector.get(status)
       if r.content_type == 'text/html' && r.code_type == Net::HTTPOK
         response.body = r.body
-      else
-        dummy_response
       end
     end
 

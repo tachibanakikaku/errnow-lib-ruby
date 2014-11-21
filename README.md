@@ -18,47 +18,28 @@ $ bundle
 
 ## Usage
 
+##### Prepare initializer.
+
+```ruby
+# config/initializers/errnow.rb
+# TODO: create initializer with `rake`.
+Errnow.configure do |config|
+  config.url               = 'url-to-request-error-page'
+  config.app_id            = 'my-app-id'
+  config.access_key        = 'my-access-key
+  config.secret_access_key = 'my-secret-access-key'
+  config.debug             = false
+end
+```
+
 ##### Change your application_controller.
 
 ```ruby
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  ...
   include Errnow # add this line
 end
 ```
-
-##### Create controller for test.
-
-```ruby
-class StatusesController < ApplicationController
-  def success
-  end
-
-  def not_found
-    render status: :not_found
-  end
-
-  def forbidden
-    render status: :forbidden
-  end
-
-  def internal_server_error
-    render status: :internal_server_error
-  end
-end
-```
-
-##### Request
-
-- http://localhost:3000/statuses/success
-
-- http://localhost:3000/statuses/not_found
-
-- http://localhost:3000/statuses/forbidden
-
-- http://localhost:3000/statuses/internal_server_error
 
 ## Contributing
 

@@ -12,18 +12,13 @@ Gem::Specification.new do |s|
   s.description   = %q{Gem for ErrNow.}
   s.homepage      = ''
   s.license       = 'GPLv3'
-
-  s.files = [
-    'errnow.gemspec',
-    'lib/errnow.rb',
-    'lib/errnow/instance_methods.rb',
-    'lib/errnow/connector.rb',
-    'README.md'
-  ]
-
+  s.files         = `git ls-files -z`.split("\x0")
   s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.test_files    = s.files.grep(%r{^(test|spec|features)/})
   s.require_paths = ['lib']
+
+  s.add_dependency 'activesupport', '>= 3.0.0'
+  s.add_dependency 'tencryptor', '~> 0.0.3'
 
   s.add_development_dependency 'bundler', '~> 1.6'
   s.add_development_dependency 'rake', '~> 10.0'
