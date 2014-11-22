@@ -26,7 +26,7 @@ $ bundle
 Errnow.configure do |config|
   config.url               = 'url-to-request-error-page'
   config.app_id            = 'my-app-id'
-  config.access_key        = 'my-access-key
+  config.access_key        = 'my-access-key'
   config.secret_access_key = 'my-secret-access-key'
   config.debug             = false
 end
