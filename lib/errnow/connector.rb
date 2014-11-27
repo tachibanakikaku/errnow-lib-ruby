@@ -20,8 +20,9 @@ module Errnow
     # @param status [Fixnum] status for the page
     # @return res [Net::HTTPResponse]
     def get(status = nil)
-      params = { app_id: Errnow.config.app_id, status: status }
       uri = URI(Errnow.url)
+      params = { app_id: Errnow.config.app_id, status: status }
+      params.merge!(@enc.signed_parameters(uri))
       uri.query = URI.encode_www_form(params)
 
       Net::HTTP.start(
@@ -29,9 +30,8 @@ module Errnow
         uri.port,
         use_ssl: uri.scheme == 'https') do |http|
         req = Net::HTTP::Get.new(uri)
-        req['Authorization'] =
-          "#{Errnow.access_key}::#{@enc.signature(uri, req.method)}"
-        res = http.request(req)
+
+        http.request(req)
       end
     end
   end
