@@ -1,5 +1,7 @@
 # Errnow
 
+[![Circle CI](https://circleci.com/gh/tachibanakikaku/errnow-lib-ruby.svg?style=svg)](https://circleci.com/gh/tachibanakikaku/errnow-lib-ruby)
+
 Errnow client library for Ruby.
 
 ## Installation
