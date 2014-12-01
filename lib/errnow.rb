@@ -1,3 +1,4 @@
+require 'active_support'
 require_relative 'errnow/connector'
 require_relative 'errnow/instance_methods'
 require_relative 'errnow/version'
@@ -17,7 +18,8 @@ module Errnow
     @config
   end
 
-  include ActiveSupport::Configurable
+  include ::ActiveSupport::Configurable
+
   config_accessor :url
   config_accessor :app_id
   config_accessor :access_key
